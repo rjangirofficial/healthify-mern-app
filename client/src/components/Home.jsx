@@ -33,7 +33,7 @@ const Home = () => {
         <div className='dashboard_container home_container'>
             <Link to='/' className='logo'>Healthify</Link>
 
-        {loaderValue && Loader}
+        {loaderValue && <Loader/>}
 
         {
             blogs.map((item, index) => {
