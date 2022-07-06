@@ -20,6 +20,7 @@ function App() {
           <Route path='/blogs/:id' element={<Blogs />} />
           <Route path='*' element={<PageNotFound />} />
           <Route path='/admin/dashboard/edit' element={<Navigate to="/admin/dashboard" />} />
+          <Route path='/blogs' element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>
     </>
