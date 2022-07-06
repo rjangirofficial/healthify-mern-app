@@ -10,7 +10,7 @@ const Home = () => {
 
     const fetchApiData = async () => {
         setLoaderValue(true)
-        const resp = await fetch('/blogs', {
+        const resp = await fetch('/api/blogs', {
             method: "GET",
             headers: {
                 "Content-type": "application/json"

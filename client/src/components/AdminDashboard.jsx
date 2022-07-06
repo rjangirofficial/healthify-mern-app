@@ -23,7 +23,7 @@ const AdminDashboard = () => {
     const verify = async () => {
         const storageData = JSON.parse(localStorage.getItem('token'))
         if (storageData) {
-            const resp = await fetch('/verify', {
+            const resp = await fetch('/api/verify', {
                 method: "GET",
                 headers: {
                     "token": storageData,
@@ -45,7 +45,7 @@ const AdminDashboard = () => {
 
     const fetchApiData = async () => {
         setLoaderValue(true)
-        const resp = await fetch('/blogs', {
+        const resp = await fetch('/api/blogs', {
             method: "GET",
             headers: {
                 "Content-type": "application/json"
@@ -61,7 +61,7 @@ const AdminDashboard = () => {
         e.preventDefault()
         const storageData = JSON.parse(localStorage.getItem('token'))
         if (storageData) {
-            const resp = await fetch('/admin/dashboard', {
+            const resp = await fetch('/api/admin/dashboard', {
                 method: "POST",
                 headers: {
                     "token": storageData,
@@ -84,7 +84,7 @@ const AdminDashboard = () => {
     const deleteBlog = async (id) => {
         const storageData = JSON.parse(localStorage.getItem('token'))
         if (storageData) {
-            const resp = await fetch(`/blogs/${id}`, {
+            const resp = await fetch(`/api/blogs/${id}`, {
                 method: "DELETE",
                 headers: {
                     "token": storageData,

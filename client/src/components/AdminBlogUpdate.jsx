@@ -26,7 +26,7 @@ const AdminBlogUpdate = () => {
     const verify = async () => {
         const storageData = JSON.parse(localStorage.getItem('token'))
         if (storageData) {
-            const resp = await fetch('/verify', {
+            const resp = await fetch('/api/verify', {
                 method: "GET",
                 headers: {
                     "token": storageData,
@@ -50,7 +50,7 @@ const AdminBlogUpdate = () => {
         const storageData = JSON.parse(localStorage.getItem('token'))
         if (storageData) {
             setLoaderValue(true)
-            const resp = await fetch(`/admin/dashboard/edit/${id}`, {
+            const resp = await fetch(`/api/admin/dashboard/edit/${id}`, {
                 method: "GET",
                 headers: {
                     "token": storageData,
@@ -73,7 +73,7 @@ const AdminBlogUpdate = () => {
         e.preventDefault()
         const storageData = JSON.parse(localStorage.getItem('token'))
         if (storageData) {
-            const resp = await fetch(`/admin/dashboard/edit/${id}`, {
+            const resp = await fetch(`/api/admin/dashboard/edit/${id}`, {
                 method: "PUT",
                 headers: {
                     "token": storageData,

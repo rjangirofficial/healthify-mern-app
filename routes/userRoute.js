@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const verify = require('../middleware/verify')
 
-router.post("/admin/login", async (req, res) => {
+router.post("/api/admin/login", async (req, res) => {
     const { email, password } = req.body
     const user = await User.findOne({ email })
     if (user) {
@@ -21,11 +21,11 @@ router.post("/admin/login", async (req, res) => {
     }
 })
 
-router.get('/verify', verify, (req, res) => {
+router.get('/api/verify', verify, (req, res) => {
     res.status(200).json({ msg: "Verified" })
 })
 
-router.post('/admin/dashboard', verify, async (req, res) => {
+router.post('/api/admin/dashboard', verify, async (req, res) => {
     try {
         const { title, blog, category, author } = req.body
         const post = await Post.create({
@@ -37,7 +37,7 @@ router.post('/admin/dashboard', verify, async (req, res) => {
     }
 })
 
-router.get('/blogs', async (req, res) => {
+router.get('/api/blogs', async (req, res) => {
     try {
         const post = await Post.find().sort({ title: -1 })
         res.status(200).json(post)
@@ -56,7 +56,7 @@ router.get('/api/blogs/:id', async (req, res) => {
     }
 })
 
-router.delete('/blogs/:id', verify, async (req, res) => {
+router.delete('/api/blogs/:id', verify, async (req, res) => {
     try {
         const id = req.params.id
         const post = await Post.findByIdAndDelete({ _id: id })
@@ -68,7 +68,7 @@ router.delete('/blogs/:id', verify, async (req, res) => {
     }
 })
 
-router.put('/admin/dashboard/edit/:id', verify, async (req, res) => {
+router.put('/api/admin/dashboard/edit/:id', verify, async (req, res) => {
     try {
         const { title, blog, category, author } = req.body
         const id = req.params.id
@@ -81,7 +81,7 @@ router.put('/admin/dashboard/edit/:id', verify, async (req, res) => {
     }
 })
 
-router.get('/admin/dashboard/edit/:id', verify, async (req, res) => {
+router.get('/api/admin/dashboard/edit/:id', verify, async (req, res) => {
     try {
         const id = req.params.id
         const post = await Post.findById({ _id: id })
