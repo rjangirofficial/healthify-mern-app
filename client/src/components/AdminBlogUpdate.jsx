@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Loader from './Assets/Loader'
 
 const AdminBlogUpdate = () => {
+
+    const [loaderValue, setLoaderValue] = useState(false)
 
     const Successnotify = (msg) => toast.success(msg);
     const Errornotify = (msg) => toast.error(msg);
@@ -19,7 +22,6 @@ const AdminBlogUpdate = () => {
     const [author, setAuthor] = useState("")
 
     const [blogs, setBlogs] = useState([])
-
 
     const verify = async () => {
         const storageData = JSON.parse(localStorage.getItem('token'))
@@ -47,6 +49,7 @@ const AdminBlogUpdate = () => {
     const fetchApiData = async () => {
         const storageData = JSON.parse(localStorage.getItem('token'))
         if (storageData) {
+            setLoaderValue(true)
             const resp = await fetch(`/admin/dashboard/edit/${id}`, {
                 method: "GET",
                 headers: {
@@ -54,6 +57,7 @@ const AdminBlogUpdate = () => {
                     "Content-type": "application/json"
                 }
             })
+            setLoaderValue(false)
             const data = await resp
             const jsonData = await data.json()
             setTitle(jsonData.title)
@@ -98,6 +102,7 @@ const AdminBlogUpdate = () => {
     return (
         <>
             <div className='dashboard_container'>
+                {loaderValue && <Loader />}
                 <form onSubmit={formHandler}>
                     <h1>Edit Post</h1>
                     <input required onChange={(e) => setTitle(e.target.value)} value={title} type="text" placeholder='Title' />

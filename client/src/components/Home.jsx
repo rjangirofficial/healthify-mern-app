@@ -16,10 +16,10 @@ const Home = () => {
                 "Content-type": "application/json"
             }
         })
+        setBlogs(jsonData)
         setLoaderValue(false)
         const data = await resp
         const jsonData = await data.json()
-        setBlogs(jsonData)
     }
 
     useEffect(() => {
