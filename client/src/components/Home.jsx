@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom'
+import Loader from './Assets/Loader'
 
 const Home = () => {
 
+    const [loaderValue,setLoaderValue] = useState(false)
 
     const [blogs, setBlogs] = useState([])
 
     const fetchApiData = async () => {
+        setLoaderValue(true)
         const resp = await fetch('/blogs', {
             method: "GET",
             headers: {
                 "Content-type": "application/json"
             }
         })
+        setLoaderValue(false)
         const data = await resp
         const jsonData = await data.json()
         setBlogs(jsonData)
@@ -24,8 +28,12 @@ const Home = () => {
 
     return (
 
+        <>
+
         <div className='dashboard_container home_container'>
             <Link to='/' className='logo'>Healthify</Link>
+
+        {loaderValue && Loader}
 
         {
             blogs.map((item, index) => {
@@ -41,7 +49,7 @@ const Home = () => {
         }
 
     </div>
-
+    </>
         
     );
 }
