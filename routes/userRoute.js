@@ -46,7 +46,7 @@ router.get('/blogs', async (req, res) => {
     }
 })
 
-router.get('/blogs/:id', async (req, res) => {
+router.get('/api/blogs/:id', async (req, res) => {
     try {
         const id = req.params.id
         const post = await Post.findOne({_id:id})

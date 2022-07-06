@@ -19,7 +19,7 @@ const Blogs = () => {
 
     const fetchApiData = async () => {
         setLoaderValue(true)
-        const resp = await fetch(`/blogs/${id}`, {
+        const resp = await fetch(`/api/blogs/${id}`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json"
